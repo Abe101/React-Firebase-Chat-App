@@ -13,7 +13,11 @@ import Chat from "./pages/Chat";
 import { auth } from "./services/firebase";
 
 import { Backdrop, CircularProgress } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import {
+  makeStyles,
+  createMuiTheme,
+  ThemeProvider,
+} from "@material-ui/core/styles";
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
   return (
@@ -50,7 +54,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function App() {
+const theme = createMuiTheme({
+  palette: {
+    type: "dark",
+  },
+});
+
+function Root() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -100,6 +110,14 @@ function App() {
         />
       </Switch>
     </Router>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Root />
+    </ThemeProvider>
   );
 }
 

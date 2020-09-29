@@ -31,7 +31,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   providerBtn: {
-    backgroundColor: theme.palette.common.white,
+    backgroundColor:
+      theme.palette.type === "light"
+        ? theme.palette.common.white
+        : theme.palette.background.paper,
   },
   providerIcon: {
     marginLeft: theme.spacing(1),
